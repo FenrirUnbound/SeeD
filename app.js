@@ -22,7 +22,7 @@ exports['deleteGame'] = (function destroyGame(gameId, playerId) {
     return def.ERROR_GEN;
 });
 
-exports['resetAll'] = (function ragnarok(passphrase) {
+exports['masterReset'] = (function ragnarok(passphrase) {
     if(passphrase === keys.MASTER)
         _app = {}
 

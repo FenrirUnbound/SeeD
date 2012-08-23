@@ -49,7 +49,7 @@ describe('resetAll', function() {
 
         gameId = app.createGame(playerId);
 
-        app.resetAll(keys.MASTER);
+        app.masterReset(keys.MASTER);
 
         result = app.deleteGame(gameId, playerId);
         expect(result).toEqual(def.ERROR_GEN);
@@ -62,7 +62,7 @@ describe('resetAll', function() {
 
         gameId = app.createGame(playerId);
         
-        app.resetAll('iAmATeaPot');
+        app.masterReset('iAmATeaPot');
 
         result = app.deleteGame(gameId, playerId);
         expect(result).toEqual(gameId);
