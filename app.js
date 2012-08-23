@@ -1,6 +1,7 @@
 var _app = {},
     def = require('./lib/def'),
-    helper = require('./lib/helper');
+    helper = require('./lib/helper'),
+    keys = require('./lib/keys');
 
 exports['createGame'] = (function createNewGame(playerId) {
     var gameId = playerId;
@@ -19,4 +20,11 @@ exports['deleteGame'] = (function destroyGame(gameId, playerId) {
     }
     
     return def.ERROR_GEN;
+});
+
+exports['resetAll'] = (function ragnarok(passphrase) {
+    if(passphrase === keys.MASTER)
+        _app = {}
+
+    return def.OK;
 });

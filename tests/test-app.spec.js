@@ -1,5 +1,6 @@
 var app = require('../app.js'),
-    def = require('../lib/def');
+    def = require('../lib/def'),
+    keys = require('../lib/keys');
 
 var _ranNum = (function() {
   return Math.floor(Math.random());
@@ -37,5 +38,33 @@ describe('deleteGame', function() {
         result = app.deleteGame(gameId+1, playerId);
         
         expect(result).toEqual(def.ERROR_GEN);
+    });
+});
+
+describe('resetAll', function() {
+    it('positive', function() {
+        var gameId,
+            playerId = _ranNum(),
+            result;
+
+        gameId = app.createGame(playerId);
+
+        app.resetAll(keys.MASTER);
+
+        result = app.deleteGame(gameId, playerId);
+        expect(result).toEqual(def.ERROR_GEN);
+    });
+
+    it('negative', function() {
+        var gameId,
+            playerId = _ranNum(),
+            result;
+
+        gameId = app.createGame(playerId);
+        
+        app.resetAll('iAmATeaPot');
+
+        result = app.deleteGame(gameId, playerId);
+        expect(result).toEqual(gameId);
     });
 });
